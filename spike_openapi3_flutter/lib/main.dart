@@ -71,7 +71,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       var person = Person();
                       person.id = _id;
                       person.name = _name;
-                      HelloControllerApi().putPersonUsingPOST(person).then((person) {
+                      HelloApi().createPerson(person).then((person) {
                         Scaffold.of(_formKey.currentState.context).showSnackBar(SnackBar(
                           content: Text('creation success! : $_id'),
                         ));
@@ -84,7 +84,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(labelText: "id"),
                     onChanged: (value) {
-                      HelloControllerApi().getPersonUsingGET(id: int.parse(value)).then((person) {
+                      HelloApi().fetchPerson(id: int.parse(value)).then((person) {
                         setState(() {
                           _getName = person.name;
                         });

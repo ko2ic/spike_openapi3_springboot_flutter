@@ -2,65 +2,15 @@ part of openapi.api;
 
 
 
-class HelloControllerApi {
+class HelloApi {
   final ApiClient apiClient;
 
-  HelloControllerApi([ApiClient apiClient]) : apiClient = apiClient ?? defaultApiClient;
+  HelloApi([ApiClient apiClient]) : apiClient = apiClient ?? defaultApiClient;
 
-  /// getPerson
-  ///
-  /// 
-  Future<Person> getPersonUsingGET({ int id }) async {
-    Object postBody;
-
-    // verify required params are set
-
-    // create path and map variables
-    String path = "/hello/person".replaceAll("{format}","json");
-
-    // query params
-    List<QueryParam> queryParams = [];
-    Map<String, String> headerParams = {};
-    Map<String, String> formParams = {};
-    if(id != null) {
-      queryParams.addAll(_convertParametersForCollectionFormat("", "id", id));
-    }
-
-    List<String> contentTypes = [];
-
-    String contentType = contentTypes.isNotEmpty ? contentTypes[0] : "application/json";
-    List<String> authNames = [];
-
-    if(contentType.startsWith("multipart/form-data")) {
-      bool hasFields = false;
-      MultipartRequest mp = new MultipartRequest(null, null);
-      if(hasFields)
-        postBody = mp;
-    }
-    else {
-    }
-
-    var response = await apiClient.invokeAPI(path,
-                                             'GET',
-                                             queryParams,
-                                             postBody,
-                                             headerParams,
-                                             formParams,
-                                             contentType,
-                                             authNames);
-
-    if(response.statusCode >= 400) {
-      throw new ApiException(response.statusCode, _decodeBodyBytes(response));
-    } else if(response.body != null) {
-      return apiClient.deserialize(_decodeBodyBytes(response), 'Person') as Person;
-    } else {
-      return null;
-    }
-  }
   /// putPerson
   ///
   /// 
-  Future<Person> putPersonUsingPOST(Person person) async {
+  Future<Person> createPerson(Person person) async {
     Object postBody = person;
 
     // verify required params are set
@@ -92,6 +42,56 @@ class HelloControllerApi {
 
     var response = await apiClient.invokeAPI(path,
                                              'POST',
+                                             queryParams,
+                                             postBody,
+                                             headerParams,
+                                             formParams,
+                                             contentType,
+                                             authNames);
+
+    if(response.statusCode >= 400) {
+      throw new ApiException(response.statusCode, _decodeBodyBytes(response));
+    } else if(response.body != null) {
+      return apiClient.deserialize(_decodeBodyBytes(response), 'Person') as Person;
+    } else {
+      return null;
+    }
+  }
+  /// getPerson
+  ///
+  /// 
+  Future<Person> fetchPerson({ int id }) async {
+    Object postBody;
+
+    // verify required params are set
+
+    // create path and map variables
+    String path = "/hello/person".replaceAll("{format}","json");
+
+    // query params
+    List<QueryParam> queryParams = [];
+    Map<String, String> headerParams = {};
+    Map<String, String> formParams = {};
+    if(id != null) {
+      queryParams.addAll(_convertParametersForCollectionFormat("", "id", id));
+    }
+
+    List<String> contentTypes = [];
+
+    String contentType = contentTypes.isNotEmpty ? contentTypes[0] : "application/json";
+    List<String> authNames = [];
+
+    if(contentType.startsWith("multipart/form-data")) {
+      bool hasFields = false;
+      MultipartRequest mp = new MultipartRequest(null, null);
+      if(hasFields)
+        postBody = mp;
+    }
+    else {
+    }
+
+    var response = await apiClient.invokeAPI(path,
+                                             'GET',
                                              queryParams,
                                              postBody,
                                              headerParams,

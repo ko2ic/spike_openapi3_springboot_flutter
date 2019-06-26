@@ -44,14 +44,14 @@ Please follow the [installation procedure](#installation--usage) and then run th
 import 'package:openapi/api.dart';
 
 
-var api_instance = new HelloControllerApi();
-var id = 56; // int | id
+var api_instance = new HelloApi();
+var person = new Person(); // Person | person
 
 try {
-    var result = api_instance.getPersonUsingGET(id);
+    var result = api_instance.createPerson(person);
     print(result);
 } catch (e) {
-    print("Exception when calling HelloControllerApi->getPersonUsingGET: $e\n");
+    print("Exception when calling HelloApi->createPerson: $e\n");
 }
 
 ```
@@ -62,8 +62,8 @@ All URIs are relative to *http://10.0.2.2:8080*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*HelloControllerApi* | [**getPersonUsingGET**](docs//HelloControllerApi.md#getpersonusingget) | **GET** /hello/person | getPerson
-*HelloControllerApi* | [**putPersonUsingPOST**](docs//HelloControllerApi.md#putpersonusingpost) | **POST** /hello/person | putPerson
+*HelloApi* | [**createPerson**](docs//HelloApi.md#createperson) | **POST** /hello/person | putPerson
+*HelloApi* | [**fetchPerson**](docs//HelloApi.md#fetchperson) | **GET** /hello/person | getPerson
 
 
 ## Documentation For Models

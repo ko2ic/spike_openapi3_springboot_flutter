@@ -12,7 +12,7 @@ part 'auth/api_key_auth.dart';
 part 'auth/oauth.dart';
 part 'auth/http_basic_auth.dart';
 
-part 'api/hello_controller_api.dart';
+part 'api/hello_api.dart';
 
 part 'model/person.dart';
 

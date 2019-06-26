@@ -7,12 +7,13 @@
   },
   "servers": [
     {
+      "url": "//localhost:8080/",
       "url": "//10.0.2.2:8080/"
     }
   ],
   "tags": [
     {
-      "name": "hello-controller",
+      "name": "hello",
       "description": "Hello Controller"
     }
   ],
@@ -20,10 +21,10 @@
     "/hello/person": {
       "get": {
         "tags": [
-          "hello-controller"
+          "hello"
         ],
         "summary": "getPerson",
-        "operationId": "getPersonUsingGET",
+        "operationId": "fetchPerson",
         "parameters": [
           {
             "name": "id",
@@ -52,10 +53,10 @@
       },
       "post": {
         "tags": [
-          "hello-controller"
+          "hello"
         ],
         "summary": "putPerson",
-        "operationId": "putPersonUsingPOST",
+        "operationId": "createPerson",
         "requestBody": {
           "description": "person",
           "content": {
