@@ -1,0 +1,107 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "API Document Demo",
+    "description": "This is an API document powered by swagger.",
+    "version": "0.0.0"
+  },
+  "servers": [
+    {
+      "url": "//10.0.2.2:8080/"
+    }
+  ],
+  "tags": [
+    {
+      "name": "hello-controller",
+      "description": "Hello Controller"
+    }
+  ],
+  "paths": {
+    "/hello/person": {
+      "get": {
+        "tags": [
+          "hello-controller"
+        ],
+        "summary": "getPerson",
+        "operationId": "getPersonUsingGET",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "id",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Person"
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      },
+      "post": {
+        "tags": [
+          "hello-controller"
+        ],
+        "summary": "putPerson",
+        "operationId": "putPersonUsingPOST",
+        "requestBody": {
+          "description": "person",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Person"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Person"
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Person": {
+        "title": "Person",
+        "required": [
+          "id",
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
